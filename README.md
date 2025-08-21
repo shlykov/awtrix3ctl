@@ -2,7 +2,7 @@
 The awtrix3-cli implements a small set of commands from [AWTRIX3 rest api](https://blueforcer.github.io/awtrix3/#/api)
 
 
-It was created just for fun and a bit vibecoded, so bugs or inconsistency are present
+**Disclaimer!** It was created just for fun and a bit vibecoded, so bugs or inconsistency are present
 
 
 ## Usage
