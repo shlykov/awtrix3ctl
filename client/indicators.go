@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func (c *Client) SetIndicator(number, color string) error {
+func (c *Client) SetIndicator(number, color, effect string, duration int) error {
 	if number != "1" && number != "2" && number != "3" {
 		return fmt.Errorf("invalid indicator number. 1,2 or 3 expected, got %d", number)
 	}
@@ -17,7 +17,15 @@ func (c *Client) SetIndicator(number, color string) error {
 		}
 	}
 
-	_, err := c.doRequest("POST", "indicator"+number, map[string]string{"color": color})
+	if effect != "blink" && effect != "fade" && effect != "" {
+		return fmt.Errorf("invalid effect. Expected blink or fade, got %s", effect)
+	}
+
+	payload := map[string]any{"color": color}
+	if effect != "" {
+		payload[effect] = duration
+	}
+	_, err := c.doRequest("POST", "indicator"+number, payload)
 	if err != nil {
 		return err
 	}

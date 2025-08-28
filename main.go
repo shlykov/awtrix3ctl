@@ -2,13 +2,13 @@ package main
 
 import (
 	"awtrix3ctl/cmd"
-	"log"
+	"os"
 )
 
 func main() {
 	rootCmd := cmd.NewRootCmd()
 	err := rootCmd.Execute()
 	if err != nil {
-		log.Fatal(err)
+		os.Exit(1)
 	}
 }

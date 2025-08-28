@@ -38,6 +38,8 @@ func NewRootCmd() *cobra.Command {
 	//Register sub commands
 	rootCmd.AddCommand(NewStatsCommand(clt))
 	rootCmd.AddCommand(NewDisplayCommand(clt))
+	rootCmd.AddCommand(NewPowerCommand(clt))
+	rootCmd.AddCommand(NewSleepCommand(clt))
 	rootCmd.AddCommand(NewIndicatorCommand(clt))
 	rootCmd.AddCommand(NewRebootCommand(clt))
 	rootCmd.AddCommand(NewSettingsCommand(clt))
