@@ -10,12 +10,14 @@ import (
 	"time"
 )
 
+const connTimeout = 5 * time.Second
+
 type Client struct {
 	deviceURL  *url.URL
 	httpClient *http.Client
 }
 
-func NewClient(awtrix3Url string) (*Client, error) {
+func NewClientWithUrl(awtrix3Url string) (*Client, error) {
 	deviceURL, err := url.Parse(awtrix3Url)
 	if err != nil {
 		return nil, err
@@ -23,12 +25,32 @@ func NewClient(awtrix3Url string) (*Client, error) {
 	return &Client{
 		deviceURL: deviceURL,
 		httpClient: &http.Client{
-			Timeout: 10 * time.Second,
+			Timeout: connTimeout,
 		},
 	}, nil
 }
 
+func NewClient() *Client {
+	return &Client{
+		httpClient: &http.Client{
+			Timeout: connTimeout,
+		},
+	}
+}
+
+func (c *Client) SetDeviceURL(deviceURL string) error {
+	var err error
+	c.deviceURL, err = url.Parse(deviceURL)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func (c *Client) doRequest(method, path string, body interface{}) ([]byte, error) {
+	if c.deviceURL == nil {
+		return nil, fmt.Errorf("device URL isn't set")
+	}
 	var reqBody io.Reader
 	if body != nil {
 		jsonData, err := json.Marshal(body)

@@ -1,5 +1,5 @@
 # Simple CLI tool for AWTRIX3 
-The awtrix3-cli implements a small set of commands from [AWTRIX3 rest api](https://blueforcer.github.io/awtrix3/#/api)
+The awtrix3ctl implements a small set of commands from [AWTRIX3 rest api](https://blueforcer.github.io/awtrix3/#/api)
 
 
 **Disclaimer!** It was created just for fun and a bit vibecoded, so bugs or inconsistency are present
@@ -9,7 +9,7 @@ The awtrix3-cli implements a small set of commands from [AWTRIX3 rest api](https
 
 ### You Need to set URL for api endpoint
 
-There ae two ways.
+There are two ways.
 
 Env variable `AWTRIX3_URL`
 ```
@@ -19,7 +19,7 @@ export AWTRIX3_URL=http://192.168.4.1/
 or `-url` param
 
 ```
-awtrix3-cli -url http://192.168.0.219/ 
+awtrix3ctl --url http://192.168.0.219/ 
 ```
 
 ### Commands
