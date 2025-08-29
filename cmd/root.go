@@ -35,13 +35,24 @@ func NewRootCmd() *cobra.Command {
 		return clt.SetDeviceURL(url)
 	}
 
-	//Register sub commands
+	rootCmd.AddGroup(&cobra.Group{
+		ID:    "manage",
+		Title: "Manage settings and state of the device",
+	})
+	rootCmd.AddGroup(&cobra.Group{
+		ID:    "interaction",
+		Title: "Interact with matrix and buzzer",
+	})
+
+	//Management
 	rootCmd.AddCommand(NewStatsCommand(clt))
 	rootCmd.AddCommand(NewDisplayCommand(clt))
 	rootCmd.AddCommand(NewPowerCommand(clt))
 	rootCmd.AddCommand(NewSleepCommand(clt))
-	rootCmd.AddCommand(NewIndicatorCommand(clt))
 	rootCmd.AddCommand(NewRebootCommand(clt))
 	rootCmd.AddCommand(NewSettingsCommand(clt))
+	//Interactions
+	rootCmd.AddCommand(NewIndicatorCommand(clt))
+	rootCmd.AddCommand(NewRtttlCommand(clt))
 	return rootCmd
 }

@@ -8,8 +8,9 @@ import (
 
 func NewRebootCommand(clt *client.Client) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "reboot",
-		Short: "Reboot the device",
+		Use:     "reboot",
+		GroupID: "manage",
+		Short:   "Reboot the device",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return clt.Reboot()
 		},

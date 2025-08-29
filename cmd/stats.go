@@ -9,8 +9,9 @@ import (
 
 func NewStatsCommand(clt *client.Client) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "stats",
-		Short: "Show device statistics",
+		Use:     "stats",
+		GroupID: "manage",
+		Short:   "Show device statistics",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			stats, err := clt.GetStats()
 			if err != nil {

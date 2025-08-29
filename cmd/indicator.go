@@ -10,8 +10,9 @@ import (
 
 func NewIndicatorCommand(clt *client.Client) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "indicator <1|2|3> <#RRGGBB> [<fade> <duration_ms>|<blink> <duration_ms>]",
-		Short: "Set an indicator LED color, add optional effect",
+		Use:     "indicator <1|2|3> <#RRGGBB> [<fade> <duration_ms>|<blink> <duration_ms>]",
+		GroupID: "interaction",
+		Short:   "Set an indicator LED color, add optional effect",
 		Args: func(cmd *cobra.Command, args []string) error {
 			if len(args) != 2 && len(args) != 4 {
 				return fmt.Errorf("accepts 2 or 4 arg(s), received %d", len(args))

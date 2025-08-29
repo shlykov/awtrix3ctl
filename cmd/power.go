@@ -9,9 +9,10 @@ import (
 
 func NewPowerCommand(clt *client.Client) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "power [on|off]",
-		Short: "Set power state",
-		Args:  cobra.ExactArgs(1),
+		Use:     "power [on|off]",
+		GroupID: "manage",
+		Short:   "Set power state",
+		Args:    cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			switch args[0] {
 			case "on":

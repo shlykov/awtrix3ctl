@@ -9,9 +9,10 @@ import (
 
 func NewDisplayCommand(clt *client.Client) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "display [on|off]",
-		Short: "Get or set display power state",
-		Args:  cobra.MaximumNArgs(1),
+		Use:     "display [on|off]",
+		GroupID: "interaction",
+		Short:   "Get or set display power state",
+		Args:    cobra.MaximumNArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {
 				stats, err := clt.GetStats()
